@@ -1375,7 +1375,15 @@ class CarPlayHostActivity : ComponentActivity() {
         override fun onDisplayChanged(displayId: Int) = Unit
     }
 
+    // The virtual 1280x720 stream feeds the centre card only, so it never claims the instrument role.
     private fun clusterDisplayConfig(): AirPlayDisplayConfig? {
+        val config = clusterStreamConfig() ?: return null
+        if (!clusterStreamOnDisplay || !AirPlayPersistence.loadClusterInstrumentRole(this)) return config
+        appendLog("Cluster map: advertising showsInstruments for ${config.widthPixels}x${config.heightPixels}")
+        return config.copy(showsInstruments = true)
+    }
+
+    private fun clusterStreamConfig(): AirPlayDisplayConfig? {
         adbClusterConfigured = false
         clusterStreamOnDisplay = false
         requestedSmallWindowForStream = null

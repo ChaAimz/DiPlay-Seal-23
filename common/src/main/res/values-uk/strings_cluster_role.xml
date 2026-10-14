@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_cluster_instrument_role">Повідомляти про панель приладів як про комбінацію приладів (експериментально)</string>
+    <string name="settings_cluster_instrument_role_description">Тест iOS 27. Повідомляє iPhone, що екран панелі приладів — це комбінація приладів (showsInstruments); це може дозволити Apple Maps показувати там огляд (північ угорі) або детальний вигляд. Типово вимкнено. Застосовується під час наступного підключення.</string>
+</resources>

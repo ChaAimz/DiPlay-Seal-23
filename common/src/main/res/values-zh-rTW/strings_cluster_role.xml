@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_cluster_instrument_role">將儀表板宣告為儀表組（實驗性）</string>
+    <string name="settings_cluster_instrument_role_description">iOS 27 測試。告知 iPhone 儀表板螢幕是儀表組（showsInstruments），可能讓 Apple 地圖在此顯示概覽（北方朝上）或詳細檢視。預設關閉。在下次連線時套用。</string>
+</resources>

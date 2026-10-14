@@ -38,6 +38,8 @@ data class AirPlayDisplayConfig(
     val mainDisplayCornerMasks: Boolean? = null,
     /** When true, do not declare safeArea in viewAreas dictionary to avoid conflict with cornerMasks. */
     val mainDisplayDisableSafeArea: Boolean = (mainDisplayCornerMasks == true),
+    /** Marks an alternate display as an instrument cluster rather than an ordinary second screen. */
+    val showsInstruments: Boolean = false,
 )
 
 /**

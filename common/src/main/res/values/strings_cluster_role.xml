@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_cluster_instrument_role">Announce dashboard as instrument cluster (experimental)</string>
+    <string name="settings_cluster_instrument_role_description">iOS 27 test. Tells the iPhone that the dashboard screen is an instrument cluster (showsInstruments), which may let Apple Maps offer its Overview (north-up) or Detail view there. Off by default. Applies at the next connection.</string>
+</resources>
