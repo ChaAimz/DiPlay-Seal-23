@@ -86,6 +86,7 @@ object AirPlayPersistence {
     private const val KEY_FPS_COUNTER = "fps_counter"
     private const val KEY_CLUSTER_MAP = "cluster_map_enabled"
     private const val KEY_ADB_CLUSTER_ACTIVITY = "adb_cluster_activity_enabled"
+    private const val KEY_CLUSTER_INSTRUMENT_ROLE = "cluster_instrument_role"
     private const val KEY_CENTER_MAP_OVERLAY = "center_map_overlay"
     private const val KEY_CENTER_MAP_AUTO_HIDE = "center_map_auto_hide"
     private const val KEY_LAUNCHER_MAP_SHARING = "launcher_map_sharing"
@@ -835,6 +836,14 @@ object AirPlayPersistence {
             .putBoolean("platform21_cluster_enabled", enabled)
         if (enabled) edit.putBoolean(KEY_CLUSTER_MAP, true).putBoolean(KEY_ADB_CLUSTER_ACTIVITY, false)
         edit.apply()
+    }
+
+    /** Advertise a real cluster display to the iPhone with `showsInstruments` (iOS 27 experiment, off by default). */
+    fun loadClusterInstrumentRole(context: Context): Boolean =
+        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getBoolean(KEY_CLUSTER_INSTRUMENT_ROLE, false)
+
+    fun saveClusterInstrumentRole(context: Context, enabled: Boolean) {
+        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putBoolean(KEY_CLUSTER_INSTRUMENT_ROLE, enabled).apply()
     }
 
     fun saveClusterMapEnabled(context: Context, enabled: Boolean) {

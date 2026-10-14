@@ -16,6 +16,12 @@ The missing behavior may live in a separate control/state layer (`suggestUI`, di
 
 DiPlay already writes raw AirPlay binary-plist bodies into its diagnostic TRACE log as `bodyHex=...`. `tools/cluster_protocol_report.py` decodes those existing traces without modifying the transport path on the car.
 
+## Instrument-cluster role toggle
+
+**Settings → Advanced → CarPlay map on dashboard → Announce dashboard as instrument cluster (experimental)** adds `showsInstruments = true` to the Type-111 display in `/info`. It is off by default and applies at the next connection. Only a stream that lands on a real cluster display (DiLink 4 / DiLink 3 projection surface, DiLink 5 / 5.1, ADB task route) gets the flag; the virtual 1280x720 stream for the centre card never does. The log line `Cluster map: advertising showsInstruments for WxH` confirms it was sent.
+
+`showsInstruments` is not documented by Apple. Treat it as a hypothesis: capture the sequence below once with the toggle off and once with it on, and compare the decoded reports.
+
 ## Capture sequence on the Seal
 
 Use an iPhone on iOS 27 and keep the same CarPlay session for the whole sequence when possible.

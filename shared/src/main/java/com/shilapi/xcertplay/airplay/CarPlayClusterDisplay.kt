@@ -100,7 +100,6 @@ object CarPlayClusterDisplay {
             fps = FPS,
             primaryInputDevice = 0,
             features = 0,
-            showsInstruments = true,
             initialUrl = content.url,
             safeArea = safeArea(width, height, horizontalStep, verticalStep, markerXPercent, markerYPercent, baseSafeArea),
             safeAreaDrawOutside = true,

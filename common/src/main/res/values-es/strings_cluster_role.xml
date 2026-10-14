@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_cluster_instrument_role">Anunciar el panel como cuadro de instrumentos (experimental)</string>
+    <string name="settings_cluster_instrument_role_description">Prueba de iOS 27. Indica al iPhone que la pantalla del panel es un cuadro de instrumentos (showsInstruments), lo que puede permitir que Apple Maps ofrezca allí su vista general (norte arriba) o detallada. Desactivado por defecto. Se aplica en la próxima conexión.</string>
+</resources>

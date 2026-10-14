@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_cluster_instrument_role">将仪表盘声明为仪表组（实验性）</string>
+    <string name="settings_cluster_instrument_role_description">iOS 27 测试。告知 iPhone 仪表盘屏幕是仪表组（showsInstruments），可能让 Apple 地图在此显示概览（北向上）或详细视图。默认关闭。在下次连接时生效。</string>
+</resources>

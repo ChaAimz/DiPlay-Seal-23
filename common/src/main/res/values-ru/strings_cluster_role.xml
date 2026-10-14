@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_cluster_instrument_role">Сообщать о приборной панели как о комбинации приборов (экспериментально)</string>
+    <string name="settings_cluster_instrument_role_description">Тест iOS 27. Сообщает iPhone, что экран приборной панели — это комбинация приборов (showsInstruments); это может позволить Apple Maps показывать там обзор (север вверху) или подробный вид. По умолчанию выключено. Применяется при следующем подключении.</string>
+</resources>

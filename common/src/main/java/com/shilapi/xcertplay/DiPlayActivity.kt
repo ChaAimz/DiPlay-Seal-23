@@ -2176,6 +2176,12 @@ class DiPlayActivity : ComponentActivity(), AppAppearanceOwner {
                     }
                 }
                 if (clusterDisplay != null || adbCluster) {
+                    toggle(card, getString(R.string.settings_cluster_instrument_role),
+                        getString(R.string.settings_cluster_instrument_role_description),
+                        AirPlayPersistence.loadClusterInstrumentRole(this)) {
+                        AirPlayPersistence.saveClusterInstrumentRole(this, it)
+                        markReconnectNeeded()
+                    }
                     if (DiLink51ClusterLayout.supported() && !adbCluster) {
                         val automatic = DiLink51ClusterLayout.automatic(this)
                         toggle(card, getString(R.string.follow_instrument_theme_and_map_card),

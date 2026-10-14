@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_cluster_instrument_role">メーターを計器クラスタとして通知（実験的機能）</string>
+    <string name="settings_cluster_instrument_role_description">iOS 27 のテストです。メーター画面が計器クラスタであること（showsInstruments）を iPhone に伝え、Apple マップが概要表示（北が上）または詳細表示を出せるようになる可能性があります。初期設定はオフです。次回の接続時に適用されます。</string>
+</resources>

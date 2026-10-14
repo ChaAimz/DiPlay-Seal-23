@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_cluster_instrument_role">الإعلان عن لوحة العدادات كمجموعة عدادات (تجريبي)</string>
+    <string name="settings_cluster_instrument_role_description">اختبار iOS 27. يخبر iPhone أن شاشة لوحة العدادات هي مجموعة عدادات (showsInstruments)، مما قد يسمح لخرائط Apple بعرض النظرة العامة (الشمال للأعلى) أو العرض التفصيلي هناك. متوقف افتراضيًا. يُطبَّق عند الاتصال التالي.</string>
+</resources>

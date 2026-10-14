@@ -6,7 +6,7 @@ import org.junit.Test
 
 class AirPlayClusterRoleTest {
     @Test
-    fun sealClusterIsAdvertisedAsInstrumentDisplayOnly() {
+    fun clusterWithRoleIsAdvertisedAsInstrumentDisplayOnly() {
         val info = AirPlayInfoPlist.build(
             AirPlayConfig(
                 deviceName = "test",
@@ -14,7 +14,8 @@ class AirPlayClusterRoleTest {
                 btMac = "02:00:00:00:00:02",
                 sourceVersion = "366.0",
                 main = AirPlayDisplayConfig(widthPixels = 1920, heightPixels = 1080),
-                cluster = CarPlayClusterDisplay.config(widthPixels = 1920, heightPixels = 720),
+                cluster = CarPlayClusterDisplay.config(widthPixels = 1920, heightPixels = 720)
+                    .copy(showsInstruments = true),
             ),
         )
 
@@ -26,6 +27,11 @@ class AirPlayClusterRoleTest {
         assertEquals(true, cluster["showsInstruments"])
         assertEquals(111, cluster["type"])
         assertEquals(CarPlayClusterDisplay.MAP_URL, cluster["initialURL"])
+    }
+
+    @Test
+    fun clusterConfigLeavesTheRoleOffUntilTheDriverEnablesIt() {
+        assertFalse(CarPlayClusterDisplay.config(widthPixels = 1920, heightPixels = 720).showsInstruments)
     }
 
     @Test
