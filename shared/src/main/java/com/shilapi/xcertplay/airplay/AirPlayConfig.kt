@@ -22,6 +22,8 @@ data class AirPlayDisplayConfig(
     val initialUrl: String? = null,
     /** Display feature bits; null keeps the main-screen default (high-fidelity touch and knobs). */
     val features: Int? = null,
+    /** Marks an alternate display as an instrument cluster rather than an ordinary second screen. */
+    val showsInstruments: Boolean = false,
     /**
      * The view areas CarPlay may use on this display, or null for the whole display as one area. With
      * several, the car moves CarPlay between them with updateViewArea, without reconnecting.
