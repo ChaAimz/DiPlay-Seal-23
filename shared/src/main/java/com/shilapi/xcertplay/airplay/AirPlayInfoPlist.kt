@@ -215,6 +215,9 @@ object AirPlayInfoPlist {
             "mapAppearanceMode" to 0,
             "mapAppearanceSetting" to 0,
         )
+        // Apple CarPlay distinguishes an instrument-cluster panel from an ordinary auxiliary screen.
+        // Keep this absent on normal displays and assert it only for the dedicated cluster config.
+        if (display.showsInstruments) entry["showsInstruments"] = true
 
         // Several areas let the car move CarPlay between them (another dock edge, the head unit's split
         // screen) with updateViewArea, without reconnecting.
