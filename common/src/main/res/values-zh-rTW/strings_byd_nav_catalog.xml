@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_byd_nav_catalog">讀取比亞迪 HUD 與導航 ID · ADB</string>
+    <string name="settings_byd_nav_catalog_running">正在讀取比亞迪 ID…</string>
+    <string name="settings_byd_nav_catalog_saved">已儲存至 %1$s。唯讀：未寫入任何內容到車輛。</string>
+    <string name="settings_byd_nav_catalog_adb">ADB 尚未就緒。請在車機上允許 DiPlay 的 ADB 金鑰後再試一次。</string>
+    <string name="settings_byd_nav_catalog_failed">無法讀取比亞迪 ID：%1$s</string>
+</resources>
