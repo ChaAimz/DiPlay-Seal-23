@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_byd_nav_catalog">Прочитати ID HUD і навігації BYD · ADB</string>
+    <string name="settings_byd_nav_catalog_running">Читання ID BYD…</string>
+    <string name="settings_byd_nav_catalog_saved">Збережено в %1$s. Лише читання: в автомобіль нічого не записано.</string>
+    <string name="settings_byd_nav_catalog_adb">ADB не готовий. Дозвольте ключ ADB DiPlay на головному пристрої та спробуйте ще раз.</string>
+    <string name="settings_byd_nav_catalog_failed">Не вдалося прочитати ID BYD: %1$s</string>
+</resources>

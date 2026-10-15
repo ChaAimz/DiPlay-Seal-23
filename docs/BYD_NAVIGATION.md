@@ -311,3 +311,9 @@ ADB loss during creation and shutdown, and reopening after an interrupted output
 Confirm that gauges return after recovery and that existing DiLink 5 routing still
 wins on its supported hardware. Unit tests exercise the failure/recovery paths;
 the repaired branch still needs an end-to-end vehicle test.
+
+## Reading the HUD and navigation ids (diagnostics, needs ADB)
+
+**Settings → Diagnostics → Read BYD HUD and navigation ids · ADB** lists what this head unit's own firmware calls its navigation and HUD features, before anything is written to them. Over the local adbd it runs DiPlay's catalog probe under the shell uid with `--nav-catalog`: the probe reflects `android.hardware.bydauto.BYDAutoFeatureIds` and `BYDAutoConstants` and prints every device id plus each feature whose name contains `HUD`, `NAVI`, `GUIDE`, `PATHNAME`, `CROSSING`, `ARRIVE`, `TARGET_AHEAD`, `LEAD_MSG` or `MILEAGE`, in decimal and hex. The report adds the build fingerprint, `apps.setting.product.inswver` (the DiLink 3 HUD firmware, `SX<NNN>`), `ro.car.protocol`/`sys.car.protocol`, `ro.build.system.fission_single_os`, `ro.product.name` and the installed packages that look navigation-related (AMap adapters, Telenav, ClusterDebug, SOME/IP, car settings). It is saved as `Downloads/DiPlay/DiPlay-byd-nav-catalog-<time>.txt`.
+
+The dump only reads class constants, properties and the package list: it calls no `set` method and changes no setting. It exists to compare a car with the ids other projects write (for example DashCast's DiLink 3 windshield-HUD guidance) before DiPlay writes any of them.

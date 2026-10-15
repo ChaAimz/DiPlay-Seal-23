@@ -45,9 +45,10 @@ object BydVehicleCapabilityProbe {
         return BydVehicleProbeOutcome(access, capabilities)
     }
 
-    private fun catalogCommand(context: Context): String {
+    internal fun catalogCommand(context: Context, vararg args: String): String {
         val apk = shellQuote(context.packageCodePath)
-        return "CLASSPATH=$apk app_process /system/bin ${Byd13CatalogProbeMain::class.java.name}"
+        return (listOf("CLASSPATH=$apk app_process /system/bin ${Byd13CatalogProbeMain::class.java.name}") + args)
+            .joinToString(" ")
     }
 
     private fun shellQuote(value: String): String = "'" + value.replace("'", "'\"'\"'") + "'"

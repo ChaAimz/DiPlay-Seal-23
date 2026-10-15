@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_byd_nav_catalog">Leer ids de HUD y navegación de BYD · ADB</string>
+    <string name="settings_byd_nav_catalog_running">Leyendo ids de BYD…</string>
+    <string name="settings_byd_nav_catalog_saved">Guardado en %1$s. Solo lectura: no se escribió nada en el coche.</string>
+    <string name="settings_byd_nav_catalog_adb">ADB no está listo. Permite la clave ADB de DiPlay en la unidad principal y vuelve a intentarlo.</string>
+    <string name="settings_byd_nav_catalog_failed">No se pudieron leer los ids de BYD: %1$s</string>
+</resources>

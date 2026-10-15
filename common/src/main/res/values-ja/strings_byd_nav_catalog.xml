@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_byd_nav_catalog">BYD の HUD・ナビ ID を読み取る · ADB</string>
+    <string name="settings_byd_nav_catalog_running">BYD の ID を読み取り中…</string>
+    <string name="settings_byd_nav_catalog_saved">%1$s に保存しました。読み取りのみで、車には何も書き込んでいません。</string>
+    <string name="settings_byd_nav_catalog_adb">ADB の準備ができていません。ヘッドユニットで DiPlay の ADB キーを許可してから、もう一度お試しください。</string>
+    <string name="settings_byd_nav_catalog_failed">BYD の ID を読み取れませんでした: %1$s</string>
+</resources>

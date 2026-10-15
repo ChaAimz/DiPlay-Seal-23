@@ -192,6 +192,7 @@ class DiPlayActivity : ComponentActivity(), AppAppearanceOwner {
     private var initialLaunch = true
     private var notificationTransport = true
     private var exportInProgress = false
+    private var navCatalogInProgress = false
     private var usbPermissionOperation: UsbPermissionSetup.Operation? = null
     private var usbPermissionDialog: AlertDialog? = null
     internal var usbPermissionOperationFactory: (Context) -> UsbPermissionSetup.Operation = {
@@ -1744,6 +1745,9 @@ class DiPlayActivity : ComponentActivity(), AppAppearanceOwner {
             card.addView(exportButton, matchButton(10, 60))
             card.addView(button(getString(R.string.choose_save_location), false) { chooseReportDestination() }, matchButton(10, 60))
             card.addView(button(getString(R.string.settings_report_on_phone), false) { openBackup(SettingsCategory.DIAGNOSTICS) }, matchButton(10, 60))
+            card.addView(button(getString(if (navCatalogInProgress) R.string.settings_byd_nav_catalog_running
+                else R.string.settings_byd_nav_catalog), false) { dumpBydNavCatalog() }
+                .apply { isEnabled = !navCatalogInProgress }, matchButton(10, 60))
             val destination = getString(R.string.reports_save_to_downloads_diplay)
             card.addView(label(destination + getString(R.string.nothing_is_sent_automatically_protocol_payloads_and_creden), 14, MUTED).apply { setPadding(0, dp(12), 0, 0) })
             toggle(card, getString(R.string.settings_fps_counter), getString(R.string.settings_fps_counter_description),
@@ -5499,6 +5503,52 @@ class DiPlayActivity : ComponentActivity(), AppAppearanceOwner {
                 }
             }
         }, "diplay-export").start()
+    }
+
+    /** Read-only: lists the head unit's own navigation and HUD feature ids over local ADB and saves them. */
+    private fun dumpBydNavCatalog() {
+        if (navCatalogInProgress) return
+        navCatalogInProgress = true
+        render()
+        val appContext = applicationContext
+        val fileName = "DiPlay-byd-nav-catalog-${SimpleDateFormat("yyyyMMdd-HHmmss", Locale.US).format(Date())}.txt"
+        Thread({
+            // Null report: ADB was not ready. Null saved file: the report could still be read on screen.
+            val result = runCatching {
+                val report = com.shilapi.xcertplay.hud.BydNavCatalogDump.run(appContext, mayAsk = true).second
+                report to report?.let { runCatching { DiagnosticExportStore.saveWithoutPicker(appContext, fileName, it) }.getOrNull() }
+            }
+            runOnUiThread {
+                navCatalogInProgress = false
+                if (isFinishing || isDestroyed) return@runOnUiThread
+                render()
+                val (report, saved) = result.getOrElse { error ->
+                    toast(getString(R.string.settings_byd_nav_catalog_failed, error.message ?: error.javaClass.simpleName))
+                    return@runOnUiThread
+                }
+                if (report == null) {
+                    toast(getString(R.string.settings_byd_nav_catalog_adb))
+                    return@runOnUiThread
+                }
+                if (saved == null) {
+                    showDiagnosticReport(report)
+                    return@runOnUiThread
+                }
+                appDialogBuilder().setTitle(getString(R.string.settings_byd_nav_catalog))
+                    .setMessage(getString(R.string.settings_byd_nav_catalog_saved, saved.savedPath ?: "Downloads/DiPlay/$fileName"))
+                    .setPositiveButton(getString(R.string.view_diagnostic_report)) { _, _ -> showDiagnosticReport(report) }
+                    .setNegativeButton(getString(R.string.done), null)
+                    .setNeutralButton(getString(R.string.share)) { _, _ ->
+                        runCatching {
+                            startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
+                                type = "text/plain"; putExtra(Intent.EXTRA_STREAM, saved.uri)
+                                clipData = android.content.ClipData.newRawUri(getString(R.string.report_clip_label), saved.uri)
+                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            }, getString(R.string.share_diagnostic_report)))
+                        }.onFailure { showDiagnosticReport(report) }
+                    }.show()
+            }
+        }, "diplay-byd-nav-catalog").start()
     }
 
     /** The text of a diagnostic report. It reads the session logs, so call it off the main thread. */

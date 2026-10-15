@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_byd_nav_catalog">Read BYD HUD and navigation ids · ADB</string>
+    <string name="settings_byd_nav_catalog_running">Reading BYD ids…</string>
+    <string name="settings_byd_nav_catalog_saved">Saved to %1$s. Read-only: nothing was written to the car.</string>
+    <string name="settings_byd_nav_catalog_adb">ADB is not ready. Allow DiPlay\'s ADB key on the head unit, then try again.</string>
+    <string name="settings_byd_nav_catalog_failed">Could not read the BYD ids: %1$s</string>
+</resources>
